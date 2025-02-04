@@ -42,9 +42,9 @@ int rod_cutting(int rod_length, PieceLengthValue pieces[], int num_pieces,
 
   int *final_counts = vec_items(piece_counts);
   int *best_counts = vec_items(best_counts_vec);
-  for (int index = 0; index < num_pieces; index++)
+  for (int index = 0; index < num_pieces; index++) {
     final_counts[index] = best_counts[index];
-
+  }
   vec_free(best_counts_vec);
   return max_value;
 }
