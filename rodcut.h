@@ -12,6 +12,8 @@ typedef struct {
 } PieceLengthValue;
 
 int rod_cutting(int rod_length, PieceLengthValue pieces[], int num_pieces,
-                Vec piece_counts, int *remainder);
+                int piece_counts[], int *remainder);
 
+void print_result(int num_pieces, int piece_counts[], PieceLengthValue pieces[],
+                  int max_rodcut, int remainder);
 #endif

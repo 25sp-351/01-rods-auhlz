@@ -12,7 +12,11 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  int rod_length = atoi(argv[1]);
+  int rod_length = 0;
+  if (sscanf(argv[1], "%d", &rod_length) != 1 || rod_length <= 0) {
+    printf("Error Invalid rod length.\n");
+    return 1;
+  }
 
   printf("Please enter piece value options in the format of <length>, <value> "
          "(ctrl+d to input) "
@@ -29,11 +33,10 @@ int main(int argc, char *argv[]) {
       break;
     }
   }
-  // Initialize counts vec
-  Vec piece_counts = new_vec(num_pieces);
-  int *counts = vec_items(piece_counts);
+  // Initialize counts array
+  int piece_counts[num_pieces];
   for (int index = 0; index < num_pieces; index++) {
-    counts[index] = 0;
+    piece_counts[index] = 0;
   }
 
   int remainder = 0;
@@ -43,13 +46,5 @@ int main(int argc, char *argv[]) {
 
   printf("\nRod Length: %d\n", rod_length);
 
-  for (int index = 0; index < num_pieces; index++) {
-    if (counts[index] > 0) {
-      int total_piece_value = counts[index] * pieces[index].value;
-      printf("%d @ %d = %d\n", counts[index], pieces[index].length,
-             total_piece_value);
-    }
-  }
-  printf("Total Value: %d\n", max_rodcut);
-  printf("Remainder: %d\n", remainder);
+  print_result(num_pieces, piece_counts, pieces, max_rodcut, remainder);
 }
