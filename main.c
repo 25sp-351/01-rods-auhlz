@@ -28,9 +28,16 @@ int main(int argc, char *argv[]) {
   while (!feof(stdin)) {
     if (scanf("%d, %d", &pieces[num_pieces].length,
               &pieces[num_pieces].value) == 2) {
-      num_pieces++;
+      if (pieces[num_pieces].length > 0 && pieces[num_pieces].value > 0) {
+        num_pieces++;
+      } else {
+        printf("\nError: Both length and value must be positive integers.\n");
+        return 1;
+      }
     } else {
-      break;
+      printf("\nError: Invalid input format. Please enter piece value options "
+             "in the format of <length>, <value>\n");
+      return 1;
     }
   }
   // Initialize counts array

@@ -21,7 +21,7 @@ int rod_cutting(int rod_length, PieceLengthValue pieces[], int num_pieces,
 
     if (pieces[index].length <= rod_length) {
       int temp_counts[num_pieces];
-      memcpy(temp_counts, piece_counts, sizeof(num_pieces));
+      memcpy(temp_counts, piece_counts, num_pieces * sizeof(int));
 
       int current_remainder = rod_length - pieces[index].length;
       int current_value = pieces[index].value +
